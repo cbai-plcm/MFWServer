@@ -21,19 +21,21 @@ CHAT.prototype.listenConnection = function() {
     io.on('connection', function (socket) {
 
       socket.on('login', function (data) {
-        socket.topicID = data.topicID;
+        console.log('topicname :%s',data.topicid);
+        socket.topicid = data.topicid;
+        socket.username = data.username;
         ++numUsers;      
-        socket.join(data.topicID);
+        socket.join(data.topicid);
       });
       
       // when the client emits 'new message', this listens and executes
-    socket.on('new message', function (data) {
+      socket.on('new message', function (data) {
         // we tell the client to execute 'new message'
-        console.log('topicname :%s',socket.topicID);
-        socket.to(socket.topicID).emit('new message', {
+        console.log('message :%s,%s',data,socket.topicid);
+        socket.to(socket.topicid).emit('new message', {
          username: socket.username,
          message: data
-        });
+      });
         //connection.insertMessage(data);
     });
 

@@ -20,7 +20,7 @@ $(function() {
   // Prompt for setting a username
   var username;
   var groupname;
-  var connected = false;
+  var connected = true;
   var typing = false;
   var lastTypingTime;
   var $currentInput = $usernameInput.focus();
@@ -50,11 +50,11 @@ $(function() {
       $currentInput = $inputMessage.focus();
 
       // Tell the server your username
-      $.post("/verify",{email:"xxx.xx",pwd:"xxx"}, function(result)
+      //$.post("/verify",{email:"xxx.xx",pwd:"xxx"}, function(result)
         {
-            console.log(result);
-        });
-      //socket.emit('login', {"username":username, "groupname":groupname});
+            console.log(username);
+        }//);
+       socket.emit('login', {"username":username, "topicid":1});
     }
   }
 
@@ -70,6 +70,7 @@ $(function() {
         username: username,
         message: message
       });
+      console.log(message);
       // tell server to execute 'new message' and send along one parameter
       socket.emit('new message', message);
     }
@@ -204,6 +205,7 @@ $(function() {
     }
     // When the client hits ENTER on their keyboard
     if (event.which === 13) {
+      console.log(username);
       if (username) {
         sendMessage();
         socket.emit('stop typing');

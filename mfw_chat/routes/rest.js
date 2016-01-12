@@ -37,7 +37,7 @@ res.location('back');
 
     router.post("/verify",function(req,res){        
         connection.verifyUser({id:req.body.email, password:req.body.pwd},userFound);
-        res.location('chat/dd');
+       // res.location('chat/dd');
     });
 
     router.put("/users",function(req,res){

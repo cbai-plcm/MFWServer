@@ -41,6 +41,28 @@ var Topic = sequelize.define('topic', {
   }
 });
 
+var Message = sequelize.define('message', {
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey:true
+  },
+  type: {
+    type: Sequelize.STRING
+  },
+  userid:{
+    type: Sequelize.INTEGER
+  },
+  groupid:{
+    type: Sequelize.INTEGER
+  },
+  topicid:{
+    type: Sequelize.INTEGER
+  },
+  time: {
+    type: Sequelize.TIME
+  }
+});
+
 var Group = sequelize.define('group', {
   id: {
     type: Sequelize.INTEGER,
